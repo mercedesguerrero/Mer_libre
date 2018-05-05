@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1525467701 source:c:\test\mercedes guerrero\mer_libre\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"lib.h"
+
+1525467701 c:\test\mercedes guerrero\mer_libre\lib.h
+
+1525467749 source:c:\test\mercedes guerrero\mer_libre\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lib.h"
+
