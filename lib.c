@@ -70,13 +70,16 @@ int eUsuario_buscarLugarLibre(eUsuario listadoUsuario[], int limite)
     }
     return retorno;
 }
-
+/**< BUSCA EL MAYOR Y DEVUELVE EL SIGUIENTE */
 int eUsuario_siguienteId(eUsuario listadoUsuario[],int limite)
 {
     int retorno = 0;
     int i;
+    int flag=0;
+
     if(limite > 0 && listadoUsuario != NULL)
     {
+        flag =1;
         for(i=0; i<limite; i++)
         {
             if(listadoUsuario[i].estado == OCUPADO)
@@ -90,7 +93,16 @@ int eUsuario_siguienteId(eUsuario listadoUsuario[],int limite)
         }
     }
 
-    return retorno+1;
+    if(flag==1)
+    {
+        retorno= retorno+1; //LE SUMO 1 PARA QUE DE EL SIGUIENTE ID
+    }
+    if(flag==0)
+    {
+        retorno=-1;
+    }
+
+    return retorno;
 }
 
 
@@ -174,15 +186,17 @@ int eUsuario_alta(eUsuario listadoUsuario[],int limite)
     {
         retorno = -2;
         indice = eUsuario_buscarLugarLibre(listadoUsuario, limite);
-        if(indice >= 0)
+
+        if(indice > 0)//HAY LUGAR LIBRE EN EL VECTOR
         {
             retorno = -3;
             id = eUsuario_siguienteId(listadoUsuario, limite);
 
-            if(!getValidString("Ingrese su nombre: \n","Ha superado la cantidad máxima de caracteres", input,50))
+            if(id>= 0)//por si hay inconsistencia
             {
+                getValidString("Ingrese su nombre: \n","Ha superado el máximo", nombre,50);
                 retorno = 0;
-                strcpy(listadoUsuario[indice].nombre, input);
+                strcpy(listadoUsuario[indice].nombre, nombre);
                 listadoUsuario[indice].idUsuario = id;
                 listadoUsuario[indice].estado = OCUPADO;
             }
@@ -204,37 +218,46 @@ void eUsuario_baja(eUsuario listadoUsuario[], int limite, int id)
     {
         if(listadoUsuario[i].estado == OCUPADO && listadoUsuario[i].idUsuario == id)
             {
-                listadoUsuario[i].idUsuario== 0;
+                listadoUsuario[i].idUsuario= 0;
                 listadoUsuario[i].estado== LIBRE;
             }
 
     }
 }
 
+/**< PIDE UN STRING DE CARACTERES */
 void getString(char mensaje[], char input[])
 {
     printf("%s", mensaje);
     scanf("%s", input);
 }
 
-int getValidString(char mensaje[], char error[], char input[], int limite)
+/** \brief VALIDA QUE UN STRING DE CARACTERES NO SE EXCEDA DEL LÍMITE
+ *
+ * \param mensaje a ser mostrado
+ * \param mensaje de error
+ * \param input Array donde se cargará el texto ingresado
+ * \param limite de caracteres
+ */
+
+void getValidString(char mensaje[], char error[], char input[], int limite)
 {
     int j;
-    char auxString[200];
+    char auxString[limite+200]; //por si se pasa
+
     getString(mensaje, input);
 
     j= strlen(input);
 
-    if(j< limite)
+    while (j>= limite)
     {
-        strcpy(auxString, input);
-        return 1;
-    }
-    else
-    {
-        printf("%s", error);
+        printf("Ha ingresado %d caracteres\n %s", j, error);
+        getString(mensaje, input);
+
+        j= strlen(input);
+
     }
 
-    return 0;
+    strcpy(auxString, input);
 }
 

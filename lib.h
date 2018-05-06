@@ -32,6 +32,9 @@ int eUsuario_buscarPorId(eUsuario[] ,int limite, int id);
 int eUsuario_siguienteId(eUsuario[] ,int limite);
 int eUsuario_buscarLugarLibre(eUsuario listadoUsuario[],int limite);
 
+void getString(char mensaje[], char input[]);
+void getValidString(char mensaje[], char error[], char input[], int limite);
+
 void eUsuario_mostrarUno(eUsuario listadoUsuario[]);
 int eUsuario_mostrarListado(eUsuario[] ,int limite);
 int eUsuario_mostrarListadoConBorrados(eUsuario[] ,int limite);
