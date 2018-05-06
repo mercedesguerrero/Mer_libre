@@ -115,10 +115,9 @@ int eUsuario_buscarPorId(eUsuario listadoUsuario[] ,int limite, int id)
 
 
 
-int eUsuario_mostrarUno(eUsuario usuario[])
+void eUsuario_mostrarUno(eUsuario listadoUsuario[])
 {
-     printf("\n %s - %d - %d", usuario.nombre[], usuario.idUsuario, usuario.estado);
-
+     printf("\n %s - %d - %d", listadoUsuario.nombre[], listadoUsuario.idUsuario, listadoUsuario.estado);
 }
 
 int eUsuario_mostrarlistadoUsuario(eUsuario listadoUsuario[],int limite)
@@ -180,16 +179,13 @@ int eUsuario_alta(eUsuario listadoUsuario[],int limite)
             retorno = -3;
             id = eUsuario_siguienteId(listadoUsuario, limite);
 
-            printf("\nIngrese nombre: ");
-            gets(usuario.nombre);
-
-            //if(!getValidString("Nombre?","Error","Overflow", nombre,50,2))
-            //{
+            if(!getValidString("Ingrese su nombre: \n","Ha superado la cantidad máxima de caracteres", input,50))
+            {
                 retorno = 0;
-                strcpy(usuario[indice].nombre);
-                usuario[indice].idUsuario = id;
-                usuario[indice].estado = OCUPADO;
-            //}
+                strcpy(listadoUsuario[indice].nombre, input);
+                listadoUsuario[indice].idUsuario = id;
+                listadoUsuario[indice].estado = OCUPADO;
+            }
         }
     }
     return retorno;
@@ -208,9 +204,37 @@ void eUsuario_baja(eUsuario listadoUsuario[], int limite, int id)
     {
         if(listadoUsuario[i].estado == OCUPADO && listadoUsuario[i].idUsuario == id)
             {
-                listadoUsuarioUsuarioerico[i].idUsuario== 0;
-                listadoUsuarioUsuarioerico[i].estado== LIBRE;
+                listadoUsuario[i].idUsuario== 0;
+                listadoUsuario[i].estado== LIBRE;
             }
 
     }
 }
+
+void getString(char mensaje[], char input[])
+{
+    printf("%s", mensaje);
+    scanf("%s", input);
+}
+
+int getValidString(char mensaje[], char error[], char input[], int limite)
+{
+    int j;
+    char auxString[200];
+    getString(mensaje, input);
+
+    j= strlen(input);
+
+    if(j< limite)
+    {
+        strcpy(auxString, input);
+        return 1;
+    }
+    else
+    {
+        printf("%s", error);
+    }
+
+    return 0;
+}
+

@@ -51,7 +51,7 @@ int main()
                 presionarContinuar();
                 break;
             case 2:
-                eUsuario_mostrarUno(eUsuario listadoUsuario);
+                eUsuario_mostrarUno(eUsuario listadoUsuario[]);
 
                 printf("\nMODIFICAR DATOS DEL USUARIO \n");
                 presionarContinuar();
