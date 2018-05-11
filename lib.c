@@ -107,6 +107,37 @@ int eUsuario_siguienteId(eUsuario usuario[],int limite)
     return retorno;
 }
 
+/**< DA DE ALTA USUARIOS */
+int eUsuario_alta(eUsuario usuario[],int limite)
+{
+    int retorno = -1;
+    char nombre[50];
+    int idUsuario;
+    int indice;
+
+    if(limite > 0 && usuario != NULL)
+    {
+        retorno = -2;
+        indice = eUsuario_buscarLugarLibre(usuario, limite);
+
+        if(indice > 0)//HAY LUGAR LIBRE EN EL VECTOR
+        {
+            retorno = -3;
+            idUsuario = eUsuario_siguienteId(usuario, limite);
+
+            if(idUsuario>= 0)//por si hay inconsistencia
+            {
+                getValidString("Ingrese su nombre: \n", "Ha superado el máximo", nombre, 50);
+                usuario[indice].idUsuario = idUsuario;
+                strcpy(usuario[indice].nombre, nombre);
+                usuario[indice].estado = OCUPADO;
+                retorno = 0;
+            }
+        }
+    }
+    return retorno;
+}
+
 /**< BUSCA POR ID Y SI LO ENCUENTRA DEVUELVE EL ÍNDICE */
 int eUsuario_buscarPorId(eUsuario usuario[] ,int limite, int id)
 {
@@ -175,36 +206,6 @@ int eUsuario_mostrarlistadoUsuarioConBorrados(eUsuario usuario[],int limite)
     return retorno;
 }
 
-/**< DA DE ALTA USUARIOS */
-int eUsuario_alta(eUsuario usuario[],int limite)
-{
-    int retorno = -1;
-    char nombre[50];
-    int id;
-    int indice;
-
-    if(limite > 0 && usuario != NULL)
-    {
-        retorno = -2;
-        indice = eUsuario_buscarLugarLibre(usuario, limite);
-
-        if(indice > 0)//HAY LUGAR LIBRE EN EL VECTOR
-        {
-            retorno = -3;
-            id = eUsuario_siguienteId(usuario, limite);
-
-            if(id>= 0)//por si hay inconsistencia
-            {
-                getValidString("Ingrese su nombre: \n", "Ha superado el máximo", nombre, 50);
-                usuario[indice].idUsuario = id;
-                strcpy(usuario[indice].nombre, nombre);
-                usuario[indice].estado = OCUPADO;
-                retorno = 0;
-            }
-        }
-    }
-    return retorno;
-}
 
 /**< DA DE BAJA USUARIOS */
 void eUsuario_baja(eUsuario usuario[], int limite, int id)
