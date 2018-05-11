@@ -1,6 +1,11 @@
 #ifndef ESTRUCTURAUSUARIO_H_INCLUDED
 #define ESTRUCTURAUSUARIO_H_INCLUDED
 
+#define TAM 10
+#define OCUPADO 1
+#define LIBRE 0
+#define CANTIDAD 10
+
 typedef struct
 {
     int idProducto;
@@ -35,11 +40,11 @@ int eUsuario_buscarLugarLibre(eUsuario[],int limite);
 void getString(char mensaje[], char input[]);
 void getValidString(char mensaje[], char error[], char input[], int limite);
 
-void eUsuario_mostrarUno(eUsuario[]);
+void eUsuario_mostrarUno(eUsuario usuario);
 int eUsuario_mostrarlistadoUsuario(eUsuario[] ,int limite);
 int eUsuario_mostrarlistadoUsuarioConBorrados(eUsuario[] ,int limite);
 
-int eUsuario_alta(eUsuario[] ,int limite);
+int eUsuario_alta(eUsuario[], int limite);
 void eUsuario_baja(eUsuario[], int limite, int id);
 int eUsuario_modificacion(eUsuario[] ,int limite, int id);
 

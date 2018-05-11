@@ -12,3 +12,16 @@
 	<stdlib.h>
 	"lib.h"
 
+1526015817 source:c:\users\mechu\documents\mer_libre\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"lib.h"
+
+1526015951 c:\users\mechu\documents\mer_libre\lib.h
+
+1526015951 source:c:\users\mechu\documents\mer_libre\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lib.h"
+

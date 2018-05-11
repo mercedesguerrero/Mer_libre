@@ -10,7 +10,6 @@ int main()
 
     char seguir='s';
     int opcion=0;
-    int id;
 
 
     eUsuario listadoUsuario[TAMUSUARIO];
@@ -48,11 +47,11 @@ int main()
         switch(opcion)
         {
             case 1:
-                printf("\nALTA DE USUARIO \n");
+                //printf("\nALTA DE USUARIO \n");
+                eUsuario_alta(listadoUsuario, TAMUSUARIO);
                 presionarContinuar();
                 break;
             case 2:
-                eUsuario_mostrarUno(listadoUsuario[]);
 
                 printf("\nMODIFICAR DATOS DEL USUARIO \n");
                 presionarContinuar();
