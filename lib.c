@@ -35,33 +35,34 @@ void presionarContinuar()
     getch();
 }
 
-
-int eUsuario_init (eUsuario listadoUsuario[],int limite)
+/**< INICIALIZA ESTADO EN LIBRE Y ID DE USUARIO EN 0 */
+int eUsuario_init (eUsuario usuario[],int limite)
 {
     int retorno = -1;
     int i;
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = 0;
         for(i=0; i<limite; i++)
         {
-            listadoUsuario[i].estado= LIBRE;
-            listadoUsuario[i].idUsuario= 0;
+            usuario[i].estado= LIBRE;
+            usuario[i].idUsuario= 0;
         }
     }
     return retorno;
 }
 
-int eUsuario_buscarLugarLibre(eUsuario listadoUsuario[], int limite)
+/**< BUSCA UN LUGAR LIBRE EN EL ARRAY Y SI LO ENCUENTRA DEVUELVE EL ÍNDICE */
+int eUsuario_buscarLugarLibre(eUsuario usuario[], int limite)
 {
     int retorno = -1;
     int i;
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = -2;
         for(i=0;i<limite;i++)
         {
-            if(listadoUsuario[i].estado == LIBRE)
+            if(usuario[i].estado == LIBRE)
             {
                 retorno = i;
                 break;
@@ -70,23 +71,24 @@ int eUsuario_buscarLugarLibre(eUsuario listadoUsuario[], int limite)
     }
     return retorno;
 }
+
 /**< BUSCA EL MAYOR Y DEVUELVE EL SIGUIENTE */
-int eUsuario_siguienteId(eUsuario listadoUsuario[],int limite)
+int eUsuario_siguienteId(eUsuario usuario[],int limite)
 {
     int retorno = 0;
     int i;
     int flag=0;
 
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         flag =1;
         for(i=0; i<limite; i++)
         {
-            if(listadoUsuario[i].estado == OCUPADO)
+            if(usuario[i].estado == OCUPADO)
             {
-                    if(listadoUsuario[i].idUsuario>retorno)
+                    if(usuario[i].idUsuario>retorno)
                     {
-                         retorno=listadoUsuario[i].idUsuario;
+                         retorno=usuario[i].idUsuario;
                     }
 
             }
@@ -105,17 +107,17 @@ int eUsuario_siguienteId(eUsuario listadoUsuario[],int limite)
     return retorno;
 }
 
-
-int eUsuario_buscarPorId(eUsuario listadoUsuario[] ,int limite, int id)
+/**< BUSCA POR ID Y SI LO ENCUENTRA DEVUELVE EL ÍNDICE */
+int eUsuario_buscarPorId(eUsuario usuario[] ,int limite, int id)
 {
     int retorno = -1;
     int i;
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = -2;
         for(i=0;i<limite;i++)
         {
-            if(listadoUsuario[i].estado == OCUPADO && listadoUsuario[i].idUsuario == id)
+            if(usuario[i].estado == OCUPADO && usuario[i].idUsuario == id)
             {
                 retorno = i;
                 break;
@@ -126,26 +128,27 @@ int eUsuario_buscarPorId(eUsuario listadoUsuario[] ,int limite, int id)
 }
 
 
-
-void eUsuario_mostrarUno(eUsuario listadoUsuario[])
+/**< MUESTRA UN USUARIO */
+void eUsuario_mostrarUno(eUsuario usuario[])
 {
-     printf("\n %s - %d - %d", listadoUsuario.nombre[], listadoUsuario.idUsuario, listadoUsuario.estado);
+     printf("\n %s - %d - %d", usuario[].nombre, usuario[].idUsuario, usuario[].estado);
 }
 
-int eUsuario_mostrarlistadoUsuario(eUsuario listadoUsuario[],int limite)
+/**< MUESTRA LISTA DE USUARIOS */
+int eUsuario_mostrarlistadoUsuario(eUsuario usuario[],int limite)
 {
     int retorno = -1;
     int i;
 
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = 0;
         for(i=0; i<limite; i++)
         {
-            if(listadoUsuario[i].estado==OCUPADO)
+            if(usuario[i].estado==OCUPADO)
             {
 
-                eUsuario_mostrarUno(listadoUsuario[i]);
+                eUsuario_mostrarUno(usuario[i]);
             }
         }
     }
@@ -153,75 +156,73 @@ int eUsuario_mostrarlistadoUsuario(eUsuario listadoUsuario[],int limite)
 }
 
 
-int eUsuario_mostrarlistadoUsuarioConBorrados(eUsuario listadoUsuario[],int limite)
+int eUsuario_mostrarlistadoUsuarioConBorrados(eUsuario usuario[],int limite)
 {
     int retorno = -1;
     int i;
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = 0;
         for(i=0; i<limite; i++)
         {
-            if(listadoUsuario[i].estado==LIBRE)
+            if(usuario[i].estado==LIBRE)
             {
                 printf("\n[LIBRE]");
             }
-            eUsuario_mostrarUno(listadoUsuario[i]);
+            eUsuario_mostrarUno(usuario[i]);
         }
     }
     return retorno;
 }
 
-
-
-
-int eUsuario_alta(eUsuario listadoUsuario[],int limite)
+/**< DA DE ALTA USUARIOS */
+int eUsuario_alta(eUsuario usuario[],int limite)
 {
     int retorno = -1;
     char nombre[50];
     int id;
     int indice;
 
-    if(limite > 0 && listadoUsuario != NULL)
+    if(limite > 0 && usuario != NULL)
     {
         retorno = -2;
-        indice = eUsuario_buscarLugarLibre(listadoUsuario, limite);
+        indice = eUsuario_buscarLugarLibre(usuario, limite);
 
         if(indice > 0)//HAY LUGAR LIBRE EN EL VECTOR
         {
             retorno = -3;
-            id = eUsuario_siguienteId(listadoUsuario, limite);
+            id = eUsuario_siguienteId(usuario, limite);
 
             if(id>= 0)//por si hay inconsistencia
             {
-                getValidString("Ingrese su nombre: \n","Ha superado el máximo", nombre,50);
+                getValidString("Ingrese su nombre: \n", "Ha superado el máximo", nombre, 50);
+                usuario[indice].idUsuario = id;
+                strcpy(usuario[indice].nombre, nombre);
+                usuario[indice].estado = OCUPADO;
                 retorno = 0;
-                strcpy(listadoUsuario[indice].nombre, nombre);
-                listadoUsuario[indice].idUsuario = id;
-                listadoUsuario[indice].estado = OCUPADO;
             }
         }
     }
     return retorno;
 }
 
-void eUsuario_baja(eUsuario listadoUsuario[], int limite, int id)
+/**< DA DE BAJA USUARIOS */
+void eUsuario_baja(eUsuario usuario[], int limite, int id)
 {
     int i;
 
-    eUsuario_mostrarlistadoUsuario(listadoUsuario, CANTIDAD);
+    eUsuario_mostrarlistadoUsuario(usuario, CANTIDAD);
 
     printf( "\n \t Seleccione ID a dar de baja");
-    getchar();
+    scanf("%d", i);//VER ESTO getchar();
 
     for (i=0; i<limite; i++)
     {
-        if(listadoUsuario[i].estado == OCUPADO && listadoUsuario[i].idUsuario == id)
+        if(usuario[i].estado == OCUPADO && usuario[i].idUsuario == id)
             {
-                listadoUsuario[i].idUsuario= 0;
-                listadoUsuario[i].estado== LIBRE;
+                usuario[i].idUsuario= 0;
+                usuario[i].estado== LIBRE;
             }
-
     }
 }
 

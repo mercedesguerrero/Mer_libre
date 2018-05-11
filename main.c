@@ -17,26 +17,27 @@ int main()
 
     eUsuario_init(listadoUsuario, TAMUSUARIO);
 
+    /*
     printf( "\n \t muestro el array... esta vacio");
-    eUsuario_mostrarListado(listadoUsuario,TAMUSUARIO);
+    eUsuario_mostrarListado(usuario,TAMUSUARIO);
     getchar();
 
     printf( "\n \t muestro el array con los borrados y vacios");
-    eUsuario_mostrarListadoConBorrados(listadoUsuario,TAMUSUARIO);
+    eUsuario_mostrarListadoConBorrados(usuario, TAMUSUARIO);
     getchar();
 
-    eUsuario_alta(listadoUsuario,TAMUSUARIO);
-    eUsuario_alta(listadoUsuario,TAMUSUARIO);
+    eUsuario_alta(usuario, TAMUSUARIO);
+    eUsuario_alta(usuario, TAMUSUARIO);
     printf( "\n \t cargo dos elementos y muestro el array");
-    eUsuario_mostrarListado(listadoUsuario,TAMUSUARIO);
-    getchar();
+    eUsuario_mostrarListado(usuario, TAMUSUARIO);
 
-    eUsuario_baja(listadoUsuario, TAMUSUARIO, id);
+
+    eUsuario_baja(usuario, TAMUSUARIO, id);
 
     printf( "\n \t muestro el array con los borrados y vacios");
-    eUsuario_mostrarListadoConBorrados(listadoUsuario, TAMUSUARIO);
-    getchar();
+    eUsuario_mostrarListadoConBorrados(usuario, TAMUSUARIO);
 
+    */
 
 
     do
@@ -51,7 +52,7 @@ int main()
                 presionarContinuar();
                 break;
             case 2:
-                eUsuario_mostrarUno(eUsuario listadoUsuario[]);
+                eUsuario_mostrarUno(listadoUsuario[]);
 
                 printf("\nMODIFICAR DATOS DEL USUARIO \n");
                 presionarContinuar();

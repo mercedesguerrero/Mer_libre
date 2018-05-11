@@ -23,24 +23,24 @@ typedef struct
     int idUsuario;
     int idProducto;
     int estado;
-}eProducto_Usuario;
+}eVentas;
 
 #endif // ESTRUCTURAUSUARIO_H_INCLUDED
 
 int eUsuario_init(eUsuario[],int limite);
 int eUsuario_buscarPorId(eUsuario[] ,int limite, int id);
 int eUsuario_siguienteId(eUsuario[] ,int limite);
-int eUsuario_buscarLugarLibre(eUsuario listadoUsuario[],int limite);
+int eUsuario_buscarLugarLibre(eUsuario[],int limite);
 
 void getString(char mensaje[], char input[]);
 void getValidString(char mensaje[], char error[], char input[], int limite);
 
-void eUsuario_mostrarUno(eUsuario listadoUsuario[]);
-int eUsuario_mostrarListado(eUsuario[] ,int limite);
-int eUsuario_mostrarListadoConBorrados(eUsuario[] ,int limite);
+void eUsuario_mostrarUno(eUsuario[]);
+int eUsuario_mostrarlistadoUsuario(eUsuario[] ,int limite);
+int eUsuario_mostrarlistadoUsuarioConBorrados(eUsuario[] ,int limite);
 
 int eUsuario_alta(eUsuario[] ,int limite);
-void eUsuario_baja(eUsuario listadoUsuario[], int limite, int id);
+void eUsuario_baja(eUsuario[], int limite, int id);
 int eUsuario_modificacion(eUsuario[] ,int limite, int id);
 
 int eUsuario_ordenar(eUsuario[] ,int limite, int orden);
